@@ -49,12 +49,10 @@ export const UpdateProfile = async(request: CustomRequest, response: express.Res
 }
 export const GetAllUsers = async(request: express.Request, response: express.Response)=>{
     try {
-        const { page = 1, limit = 10, sortBy = 'username', order = 'asc', filter = '' } = request.query;
+        const { page = 1, limit = 10, filter = '' } = request.query;
         const result = await UserService.GetAllUsers({
             page: parseInt(page as string),
             limit: parseInt(limit as string),
-            sortBy: sortBy as string,
-            order: order as string,
             filter: filter as string,
         });
         response.status(200).json(result);

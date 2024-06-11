@@ -12,8 +12,6 @@ export interface IProfileData{
 export interface QueryParams {
     page: number;
     limit: number;
-    sortBy: string;
-    order: string;
     filter: string;
 }
 export interface IResponse<T> {

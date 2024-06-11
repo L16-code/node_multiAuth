@@ -93,10 +93,9 @@ class UserService {
     }
     async GetAllUsers(queryParams: QueryParams): Promise<IResponse<IUserListData | null>> {
         try {
-            const { page, limit, sortBy, order, filter } = queryParams;
+            const { page, limit, filter } = queryParams;
             const offset = (page - 1) * limit;
-            const users = await UserModel.find({ username: new RegExp(filter, 'i'), role: 'user' })
-                .sort({ [sortBy]: order === 'asc' ? 1 : -1 })
+            const users = await UserModel.find({ username: new RegExp(filter, 'i'), role: 'user' }).sort({username:-1})
                 .skip(offset)
                 .limit(limit).lean();
             const totalUsers = await UserModel.countDocuments({ username: new RegExp(filter, 'i') });
