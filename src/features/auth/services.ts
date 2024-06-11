@@ -66,13 +66,12 @@ class UserService {
         try {
             const user = await UserModel.findById(Id, { username: 1, role: 1, _id: 1 }).lean();
             if (user) {
-                const transformedUser: IUser = {
+                const users: IUser = {
                     _id: user._id.toString(),
                     username: user.username,
                     role: user.role,
                 };
-                // return this.createResponse("User found", true, user);
-                return this.createResponse("User found", true, transformedUser);
+                return this.createResponse("User found", true, users);
             } else {
                 return this.createResponse("User not found", false, null);
             }
